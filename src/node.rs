@@ -3780,6 +3780,7 @@ println!("RECV {}", received_len);
             .downcast::<AdnlPacketContentsBoxed>()
             .map_err(|pkt| error!("Unsupported ADNL packet format {:?}", pkt))?
             .only();
+	writer::write_message("packet from ADNL", &format!("{:?}", pkt));
         let other_key = if let Some(key) = self.check_packet(
             &pkt, 
             priority, 
